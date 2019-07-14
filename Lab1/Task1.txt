@@ -1,0 +1,3 @@
+1.Take a string Find out the unique word count
+->.Implement Division Method of Hashing
+->.Implement the Multiplication Method of Hashing
