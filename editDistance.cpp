@@ -54,6 +54,31 @@ void showTable(){
 			}
 
 }
+void operationCount(int i,int j){
+	if(ed[i][j]==0)return;
+	if(src[i-1]==des[j-1]){
+		// cout<<src[i-1]<<" "<<des[j-1]<<endl;
+		operationCount(i-1,j-1);
+	}
+	else{
+		int mi=min(min(ed[i][j-1],ed[i-1][j]),ed[i-1][j-1]);
+
+		if(mi==ed[i][j-1]){
+			cout<<"insert "<<des[j-1]<<endl;
+			operationCount(i,j-1);
+		}
+		else if(mi==ed[i-1][j]){
+			cout<<"Delete "<<src[i-1]<<endl;
+			operationCount(i-1,j);
+		}
+		else if(mi==ed[i-1][j-1]){
+			cout<<"substitute "<<src[i-1]<<" -> "<<des[j-1]<<endl;//delete+insert
+			operationCount(i-1,j-1);
+		}
+	}
+
+}
+
 int main(int argc, char const *argv[])
 {
 	gl(src);
@@ -64,9 +89,11 @@ int main(int argc, char const *argv[])
 	
 	
 	 init();
-	 createEditDistance();
-	 // createLevenshteinDistance();
+	 // createEditDistance();
+	 createLevenshteinDistance();
 	 showTable();
+	 // cout<<l<<" "<<r<<endl;
+	  operationCount(l,r);
 		
 
 
